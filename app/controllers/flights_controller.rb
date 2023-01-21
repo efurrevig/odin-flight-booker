@@ -2,8 +2,10 @@ class FlightsController < ApplicationController
 
     def index
         @airports = Airport.all
-        @flights = Flight.all
-        
+        @flights = []
+        if params[:departure_airport].present? || params[:arrival_airport].present? || params[:departure_time].present?
+            @flights = Flight.all
+        end
         # Filter flights by params if present
         if params[:departure_airport].present?
             @flights = @flights.where(departure_airport: params[:departure_airport])
@@ -20,5 +22,3 @@ class FlightsController < ApplicationController
     end
 
 end
-
-#atl ord 03/27

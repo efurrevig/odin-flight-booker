@@ -8,14 +8,18 @@
   <%= select_tag :arrival_airport, options_from_collection_for_select(@airports, :id, :code), include_blank: true %>
   <%= label_tag :departure_time, "Departure Time"%>
   <%= date_field_tag :departure_time%>
+  <%= label_tag :num_passengers, 'Passengers' %>
+  <%= select_tag :num_passengers, options_for_select([1,2,3,4])%>
   <%= submit_tag "Search" %>
 <% end %>
 
-<% @flights.each do |flight| %>
-    <p>
-        <%= flight.departure_airport.code %> to <%= flight.arrival_airport.code %>
-        <%= flight.departure_time %>
-    </p>
+<% if !params.empty? %>
+    <% @flights.each do |flight| %>
+        <p>
+            <%= flight.departure_airport.code %> to <%= flight.arrival_airport.code %>
+            <%= flight.departure_time %>
+        </p>
+    <% end %>
 <% end %>
 
 
