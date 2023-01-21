@@ -1,1 +1,20 @@
 <h1>Flights</h1>
+
+<%# search form %>
+<%= form_tag flights_path, method: :get do %>
+  <%= label_tag :departure_airport, "From" %>
+  <%= select_tag :departure_airport, options_from_collection_for_select(@airports, :id, :code), include_blank: true %>
+  <%= label_tag :arrival_airport, "To" %>
+  <%= select_tag :arrival_airport, options_from_collection_for_select(@airports, :id, :code), include_blank: true %>
+  <%= submit_tag "Search" %>
+<% end %>
+
+<% @flights.each do |flight| %>
+    <p>
+        <%= flight.departure_airport.code %> to <%= flight.arrival_airport.code %>
+        <%= flight.departure_time %>
+    </p>
+<% end %>
+
+
+<%= link_to "Reset Search", flights_path %>
