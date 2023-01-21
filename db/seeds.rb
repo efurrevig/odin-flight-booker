@@ -19,20 +19,26 @@ end
 #Populate flight table with flight data
 Flight.delete_all
 airport_codes = Airport.pluck(:id)
-airport_codes.each do |departure_airport|
-    airport_codes.each do |arrival_airport|
-        next if arrival_airport == departure_airport
+airport_codes.each do |departure_code|
+    3.times do
+        airport_codes.each do |arrival_code|
+            next if arrival_code == departure_code
 
-        #Generate random time for departure_time
-        now = Time.now
-        three_months_from_now = now + 3.months
-        random_time = Time.at(rand(now..three_months_from_now))
+            #Find the departure and arrival airports by code
+            departure_airport = Airport.find(departure_code)
+            arrival_airport = Airport.find(arrival_code)
 
-        #Generate random flight_duration between 1 and 4 hours
-        duration_min = 1.hours
-        duration_max = 5.hours
-        random_duration = rand(duration_min..duration_max)
+            #Generate random time for departure_time
+            now = Time.now
+            three_months_from_now = now + 3.months
+            random_time = Time.at(rand(now..three_months_from_now))
 
-        Flight.create(departure_airport: departure_airport, arrival_airport: arrival_airport, departure_time: random_time, flight_duration: random_duration)
+            #Generate random flight_duration between 1 and 4 hours
+            duration_min = 1.hours
+            duration_max = 5.hours
+            random_duration = rand(duration_min..duration_max)
+
+            Flight.create(departure_airport: departure_airport, arrival_airport: arrival_airport, departure_time: random_time, flight_duration: random_duration)
+        end
     end
 end

@@ -14,9 +14,11 @@ class FlightsController < ApplicationController
         end
 
         if params[:departure_time].present?
-            @flights = @flights.where(departure_time: params[:departure_time])
+            @flights = @flights.where("date(departure_time) = ?", params[:departure_time])
         end
 
     end
 
 end
+
+#atl ord 03/27

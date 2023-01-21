@@ -6,6 +6,8 @@
   <%= select_tag :departure_airport, options_from_collection_for_select(@airports, :id, :code), include_blank: true %>
   <%= label_tag :arrival_airport, "To" %>
   <%= select_tag :arrival_airport, options_from_collection_for_select(@airports, :id, :code), include_blank: true %>
+  <%= label_tag :departure_time, "Departure Time"%>
+  <%= date_field_tag :departure_time%>
   <%= submit_tag "Search" %>
 <% end %>
 
