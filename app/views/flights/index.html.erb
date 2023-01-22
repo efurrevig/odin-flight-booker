@@ -13,12 +13,42 @@
   <%= submit_tag "Search" %>
 <% end %>
 
-<% @flights.each do |flight| %>
-    <p>
-        <%= flight.departure_airport.code %> to <%= flight.arrival_airport.code %>
-        <%= flight.departure_time %>
-    </p>
+<% if user_signed_in? %>
+
+  <%= form_tag bookings_path, method: :post do %>
+    <%= hidden_field_tag :num_passengers, params[:num_passengers] %>
+    <%= hidden_field_tag :user_id, current_user.id %>
+
+    <% @flights.each do |flight| %>
+      <div>
+        <%= radio_button_tag :flight_id, flight.id %>
+        <label>
+            <%= flight.departure_airport.code %> to <%= flight.arrival_airport.code %>
+            <%= flight.departure_time %>
+        </label>
+      </div>
+        
+    <% end %>
+    <%= submit_tag "Book Flight" %>
+  <% end %>
+
+<% else %>
+
+  <% @flights.each do |flight| %>
+      <div>
+            <%= flight.departure_airport.code %> to <%= flight.arrival_airport.code %>
+            <%= flight.departure_time %>
+      </div>      
+    <% end %>
+  <p>Sign in to book a flight</p>
 <% end %>
 
-
 <%= link_to "Reset Search", flights_path %>
+<div>
+  <% if user_signed_in? %>
+    <%= link_to "Sign out", destroy_user_session_path, data: { "turbo-method": :delete } %>
+  <% else %>
+    <%= link_to "Sign in", new_user_session_path %>
+    <%= link_to "Sign-up", new_user_registration_path %>
+  <% end %>
+</div>
