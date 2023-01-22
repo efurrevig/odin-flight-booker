@@ -13,13 +13,11 @@
   <%= submit_tag "Search" %>
 <% end %>
 
-<% if !params.empty? %>
-    <% @flights.each do |flight| %>
-        <p>
-            <%= flight.departure_airport.code %> to <%= flight.arrival_airport.code %>
-            <%= flight.departure_time %>
-        </p>
-    <% end %>
+<% @flights.each do |flight| %>
+    <p>
+        <%= flight.departure_airport.code %> to <%= flight.arrival_airport.code %>
+        <%= flight.departure_time %>
+    </p>
 <% end %>
 
 
