@@ -1,6 +1,6 @@
 <h1>Booking Reservation</h1>
 
-<%= form_with model: @booking do |f| %>
+<%= form_with(model: @booking, local: true) do |f| %>
     <%= f.fields_for :passengers do |passenger_form| %>
         <h3>Passenger <%= passenger_form.options[:child_index]+1 %></h3>
         <div>
@@ -12,9 +12,10 @@
             <%= passenger_form.text_field :email %>
         </div>
     <% end %>
-    <%= hidden_field_tag :num_passengers, params[:num_passengers] %>
+
     <%= hidden_field_tag :user_id, current_user.id %>
     <%= hidden_field_tag :flight_id, params[:flight_id] %>
+
     <% if params[:action] == "new" %>
         <%= f.submit "Book Flight" %>
     <% else %>
