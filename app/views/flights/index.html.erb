@@ -15,7 +15,7 @@
 
 <% if user_signed_in? %>
 
-  <%= form_tag bookings_path, method: :post do %>
+  <%= form_tag new_booking_path, method: :get do %>
     <%= hidden_field_tag :num_passengers, params[:num_passengers] %>
     <%= hidden_field_tag :user_id, current_user.id %>
 

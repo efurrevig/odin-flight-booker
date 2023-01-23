@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   resources :airports
   resources :passengers
 
+
+  
 end
