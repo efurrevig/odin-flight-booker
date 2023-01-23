@@ -17,7 +17,7 @@ class BookingsController < ApplicationController
         end
         if @booking.save
             flash[:notice] = "Booking created successfully"
-            redirect_to root_url
+            redirect_to booking_path(@booking)
         else
             @booking.errors.full_messages.each do |message|
                 flash.now[:alert] = message

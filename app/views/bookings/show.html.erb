@@ -1,1 +1,25 @@
 <h1>Your booking</h1>
+
+
+<div>
+    <h3>Flight information</h3>
+    <ul>
+        <li>Flight number: <%= @booking.flight.id %></li>
+        <li>Departure: <%= @booking.flight.departure_airport.code %></li>
+        <li>Arrival: <%= @booking.flight.arrival_airport.code %></li>
+        <li>Date: <%= @booking.flight.departure_time %></li>
+        <li>Flight Duration: <%= distance_of_time_in_words(@booking.flight.flight_duration) %></li> 
+
+    </ul>
+</div>
+
+
+<div>
+    <h3>Passengers</h3>
+    <ul>
+        <% @booking.passengers.each do |passenger| %>
+            <li>Name: <%= passenger.name %><br>
+            Email: <%= passenger.email %></li>
+        <% end %>
+    </ul>
+</div>
