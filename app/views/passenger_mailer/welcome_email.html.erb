@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    </head>
+    <body>
+        <h1>You have successfully booked a flight with FLIGHT <%= @flight.id %></h1>
+
+        <h3>Flight Details:</h3>
+        <ul>
+            <li>Departure Airport: <%= @departure_airport.code %>/<%= @departure_airport.name %> </li>
+            <li>Arrival Airport: <%= @arrival_airport.code %>/<%= @arrival_airport.name %> </li>
+            <li>Departure Time: <%= @flight.departure_time %></li>
+            <li>Flight duration: <%= distance_of_time_in_words(@flight.flight_duration) %></li>
+        </li>
+        <p>
+            To view your booking online, visit our website: <%= @url %>
+        </p>
+        <p>Thanks for joining us!</p>
+    </body>
+  </body>

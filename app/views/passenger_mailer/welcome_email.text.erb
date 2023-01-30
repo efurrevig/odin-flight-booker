@@ -1,0 +1,13 @@
+You have successfully booked a flight with FLIGHT <%= @flight.id %>
+===================================================================
+
+Flight Details:
+    Departure Airport: <%= @departure_airport.code %>/<%= @departure_airport.name %>
+    Arrival Airport: <%= @arrival_airport.code %>/<%= @arrival_airport.name %>
+    Departure Time: <%= @flight.departure_time %>
+    Flight duration: <%= distance_of_time_in_words(@flight.flight_duration) %>
+
+
+To view your flight details, visit: 
+
+THanks for joining us!
